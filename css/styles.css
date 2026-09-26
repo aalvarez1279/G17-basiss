@@ -252,6 +252,21 @@ nav a {text-decoration: none; font-weight: 600;}
 /* ATRIBUTO */
 button[type="submit"]{background-color: var(--exito); font-size: 1.125rem;}
 
+/* BARRA DE CATEGORIAS */
+.categorias ul {
+    margin: 0 0 1.5rem;       /* espacio debajo, antes de los productos */
+    justify-content: center;  /* centra la fila horizontalmente */
+    flex-wrap: wrap;          /* si no caben, bajan a otra linea */
+    gap: 8px 16px;            /* 8px entre filas, 16px entre enlaces */
+}
+
+.categorias a {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background-color: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 999px;     /* forma de pastilla, igual que tus botones */
+}
 
 /* PSEUDO-CLASES */
 
@@ -367,6 +382,15 @@ footer{grid-area: pie;}
 #compra .envio select,
 #compra .envio textarea {
     flex-basis: 100%;
+}
+.fila {
+    display: flex;
+    gap: 16px;
+    grid-column: 1 / -1;
+}
+.fila p {
+    flex: 1;
+    align-content: flex-start;
 }
 .campo-ancho { 
     grid-column: 1/-1;
