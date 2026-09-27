@@ -112,6 +112,7 @@ body {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: 
         "cabecera"
+        "promo"
         "lateral"
         "contenido"
         "pie";
@@ -379,6 +380,13 @@ header{grid-area: cabecera;}
 main{grid-area: contenido;}
 aside{grid-area: lateral; align-self: start;}
 footer{grid-area: pie;}
+.promo {
+    grid-area: promo;
+    background-color: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
 .envio{
     display: grid;
     grid-template-columns: 1fr;
@@ -432,10 +440,14 @@ footer{grid-area: pie;}
     }
     .productos {
         grid-auto-rows: 1fr;
+        grid-auto-flow: dense;
     }
     .destacado {
         grid-column: span 2;
         grid-row: span 2;
+    }
+    .ancha {
+        grid-column: span 2;
     }
     .envio {
         grid-template-columns: 1fr 1fr;
@@ -443,12 +455,13 @@ footer{grid-area: pie;}
 }
 @media(min-width : 64em) {
     body {
-        grid-template-columns: 300px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 300px;
         grid-template-areas: 
         "cabecera cabecera"
-        "lateral contenido"
+        "promo promo"
+        "contenido lateral"
         "pie pie";
-        grid-template-rows: auto 1fr auto;
+        grid-template-rows: auto auto 1fr auto;
     }
 }
 @media (min-width: 75em) {
