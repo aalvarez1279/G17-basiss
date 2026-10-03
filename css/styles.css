@@ -1,104 +1,9 @@
-:root{
-    color-scheme: light dark;
 
-    --marca: #0066cc;   /* azul de la marca: titulos, enlaces, botones, foco */
-    --sobre-marca: #fff;
-    --exito: hsl(146 85% 26%);
-    --error: #c0392b;
-    --fondo: #f5f5f7;
-    --fondo-suave: #e5e5ea;
-    --tarjeta: #fff;
-    --resalte: #1d1d1f;
-    --texto-suave: #6e6e73;
-    --borde: #d2d2d7;
 
-    --radio: 12px;
-    --espacio: 1rem;
-    --fuente : system-ui, -apple-system, "Segoe UI", Roboto, san-serif;
+:root {
+  color-scheme: light dark;
 }
-@media (prefers-color-scheme: dark) {
-    :root{
-        --marca: #3d9bff;
-        --sobre-marca: #0b1220;
-        --exito: #30d158;
-        --error : #ff8b5e;
-        --fondo: #111114;
-        --fondo-suave: #2c2c2e;
-        --tarjeta : #1d1d1f;
-        --resalte: #0e2439;
-        --texto: #f5f5f7;
-        --texto-suave: #a1a1a6;
-        --borde: #3a3a3c;
-    }
-}
-/* TIPO */
-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--tarjeta);
-    padding: 1rem 1.25rem;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    gap: 16px;
-}
-/* id ? no, clase ? no, selector -> Si, tenemos header-h1 */
-header h1 {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center ;
-    width: 140px;
-    height: 44px;
-    background-color: var(--marca);
-    color: var(--sobre-marca);
-    border-radius: 8px;
-    font-size: 20px;
-    margin: 0;
-}
-aside{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    background-color: var(--tarjeta);
-    border: 1px solid var(--borde);
-    border-radius: 12px;
-    padding: 1.5rem;
-    overflow-x: auto;
-}
-aside h2, aside h3, aside ol {margin: 0;}
-aside h3 {margin-top: 16px;}
-/* aside h2::after {
-    margin-left: auto;
-    margin-right: auto;
-} */
-aside ol{
-    padding-left: 1.5rem;
-}
-aside table{
-    font-size: 0.85rem;
-}
-aside th, aside td{
-    padding: 6px 8px;
-}
-table{
-    width: 100%;
-    border-collapse: collapse;
-}
-caption{
-    font-weight: 600;
-    text-align: left;
-    margin-bottom: 0.5rem;
-}
-th, td {
-    border: 1px solid var(--borde);
-    padding: 0.5rem 0.75rem;
-    text-align: left;
-}
-th {
-    background-color: var(--fondo-suave);
-}
+
 body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, san-serif;
     line-height: 1.5;
@@ -112,7 +17,6 @@ body {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: 
         "cabecera"
-        "promo"
         "lateral"
         "contenido"
         "pie";
@@ -204,7 +108,7 @@ fieldset{
     border: 1px solid var(--borde);
     border-radius: 10px;
     padding: 1rem;
-    margin: 0;
+    margin-bottom: 1rem;
 }
 fieldset p{
     margin: 0.75rem 0;
@@ -240,16 +144,6 @@ legend {
 #compra textarea:user-invalid {
     border-color: var(--error);
 }
-/* FORMULARIO COMO GRID */
-#compra form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-}
-#compra button[type="submit"] {
-    grid-column: 1 / -1;
-    justify-self: start;
-}
 /* DESCENDIENTE E HIJO DIRECTO */
 nav > ul {
     list-style: none; 
@@ -263,21 +157,6 @@ nav a {text-decoration: none; font-weight: 600;}
 /* ATRIBUTO */
 button[type="submit"]{background-color: var(--exito); font-size: 1.125rem;}
 
-/* BARRA DE CATEGORIAS */
-.categorias ul {
-    margin: 0 0 1.5rem;       /* espacio debajo, antes de los productos */
-    justify-content: center;  /* centra la fila horizontalmente */
-    flex-wrap: wrap;          /* si no caben, bajan a otra linea */
-    gap: 8px 16px;            /* 8px entre filas, 16px entre enlaces */
-}
-
-.categorias a {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    background-color: var(--tarjeta);
-    border: 1px solid var(--borde);
-    border-radius: 999px;     /* forma de pastilla, igual que tus botones */
-}
 
 /* PSEUDO-CLASES */
 
@@ -352,31 +231,25 @@ figure{
 .destacado button{
     margin-top: 16px;
 }
-/* PIE DE PAGINA */
 footer {
-    display: grid;
-    grid-template: 1fr;
-    gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
     margin-top: 2rem;
     padding: 1.5rem 0;
     border-top: 1px solid var(--borde);
+    text-align: center;
     color: var(--texto-suave);
     font-size: 0.875rem;
 }
-.pie-columna {
-    flex: 1 1 200px;
+footer p,
+footer address {
+    margin: 0;
 }
-.pie-columna h3,
-.pie-columna p,
-.pie-columna ul,
-.pie-columna address {
-    margin: 0 0 0.5rem;
-}
-.pie-columna ul {
-    list-style: none;
-    padding: 0;
-}
-.pie-columna address {
+footer address{
+    order: -1;
+    margin-right: auto;
     font-style: normal;
 }
 .productos{
@@ -389,13 +262,6 @@ header{grid-area: cabecera;}
 main{grid-area: contenido;}
 aside{grid-area: lateral; align-self: start;}
 footer{grid-area: pie;}
-.promo {
-    grid-area: promo;
-    background-color: var(--tarjeta);
-    border: 1px solid var(--borde);
-    border-radius: 12px;
-    padding: 1.5rem;
-}
 .envio{
     display: grid;
     grid-template-columns: 1fr;
@@ -407,40 +273,10 @@ footer{grid-area: pie;}
 #compra .envio textarea {
     flex-basis: 100%;
 }
-.fila {
-    display: flex;
-    gap: 16px;
-    grid-column: 1 / -1;
-}
-.fila p {
-    flex: 1;
-    align-content: flex-start;
-}
 .campo-ancho { 
     grid-column: 1/-1;
 }
 
-/* BOTON DEL CARRITO */
-.carrito {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--marca);
-    color: var(--sobre-marca);
-    padding: 0.4em 1em;
-    border-radius: 999px;
-}
-.contador {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background-color: var(--sobre-marca);
-    color: var(--marca);
-    font-size: 0.75rem;
-}
 @media(min-width: 48em) {
     header {
         flex-direction: row;
@@ -449,43 +285,32 @@ footer{grid-area: pie;}
     }
     .productos {
         grid-auto-rows: 1fr;
-        grid-auto-flow: dense;
     }
     .destacado {
         grid-column: span 2;
         grid-row: span 2;
     }
-    .ancha {
-        grid-column: span 2;
-    }
     .envio {
         grid-template-columns: 1fr 1fr;
-    }
-    footer {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    #compra form {
-        grid-template: auto 1fr auto / 2fr 1fr;
-        align-items: start;
-    }
-    #compra .envio {
-        grid-column: 1;
-        grid-row: 1 / 3;
     }
 }
 @media(min-width : 64em) {
     body {
-        grid-template-columns: minmax(0, 1fr) 300px;
+        grid-template-columns: 300px minmax(0, 1fr);
         grid-template-areas: 
         "cabecera cabecera"
-        "promo promo"
-        "contenido lateral"
+        "lateral contenido"
         "pie pie";
-        grid-template-rows: auto auto 1fr auto;
+        grid-template-rows: auto 1fr auto;
     }
 }
-@media (min-width: 75em) {
-    body {
-        max-width: 1280px;
-    }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes latido {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
 }

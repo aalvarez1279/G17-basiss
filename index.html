@@ -1,10 +1,93 @@
-<!DOCTYPE html> <!--html v5-->
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>TechCart - Tienda electrónica</title>
-    <link rel="stylesheet" href="./css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechCart — Tienda de electrónica</title>
+
+  <link rel="stylesheet" href="./css/styles.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="./js/main.js"></script>
+  <style type="text/tailwindcss">
+
+    @theme {
+
+      --color-marca:        #0066cc;
+      --color-sobre-marca:  #fff;
+      --color-exito:        hsl(146 85% 26%);
+      --color-error:        #c0392b;
+      --color-fondo:        #f5f5f7;
+      --color-fondo-suave:  #e5e5ea;
+      --color-tarjeta:      #fff;
+      --color-resalte:      #e8f1fb;
+      --color-texto:        #1d1d1f;
+      --color-texto-suave:  #6e6e73;
+      --color-borde:        #d2d2d7;
+
+      --radius-tarjeta: 12px;
+
+      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      --text-seccion: clamp(1.25rem, 1rem + 1.2vw, 1.5rem);
+
+      --animate-aparecer: aparecer 0.5s ease-out backwards;
+      --animate-latido:   latido 1.6s ease-in-out infinite alternate;
+
+      --breakpoint-monitor: 75rem;
+
+      --container-pagina: 1100px;
+      --container-ancha:  1280px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-marca:        #3d9bff;
+        --color-sobre-marca:  #0b1220;
+        --color-exito:        #30d158;
+        --color-error:        #ff6b5e;
+        --color-fondo:        #111114;
+        --color-fondo-suave:  #2c2c2e;
+        --color-tarjeta:      #1d1d1f;
+        --color-resalte:      #0e2439;
+        --color-texto:        #f5f5f7;
+        --color-texto-suave:  #a1a1a6;
+        --color-borde:        #3a3a3c;
+      }
+    }
+
+    @layer components {
+
+      .tarjeta {
+        @apply bg-tarjeta border border-borde rounded-tarjeta p-4;
+      }
+
+      .boton {
+        @apply bg-marca text-sobre-marca cursor-pointer rounded-full px-[1.2em] py-[0.6em]
+               transition-[transform,filter] duration-150
+               hover:brightness-110 hover:-translate-y-px
+               focus-visible:brightness-110 focus-visible:-translate-y-px
+               active:translate-y-0 active:scale-95
+               focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2
+               motion-reduce:transition-none;
+      }
+
+      .campo {
+        @apply basis-full min-w-0 px-3 py-2 border border-borde rounded-lg
+               bg-fondo text-texto
+               placeholder:text-texto-suave placeholder:italic
+               user-invalid:border-error
+               focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2;
+      }
+
+      .titulo-seccion {
+        @apply text-seccion leading-tight
+               after:content-[''] after:block after:w-12 after:h-[3px]
+               after:bg-marca after:mt-1;
+      }
+    }
+  </style>
 </head>
 <body>
     <!-- ENCABEZADO -->
@@ -18,32 +101,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#compra" class="carrito">
+                    <a href="#compra">
                         Comprar
-                        <span class="contador">3</span>
                     </a>
-                </li>               
+                </li>
             </ul>
         </nav>
     </header>
-    <!-- PROMOCION -->
-    <section class="promo">
-        <h2>Semana Tech: hasta 20% de descuento</h2>
-        <p>En laptops seleccionadas, solo hasta el domingo.</p>
-        <a href="#catalogo">Ver ofertas</a>
-    </section>
     <!-- CONTENIDO PRINCIPAL -->
     <main>
         <section id="catalogo">
             <h2>Catalogo de productos</h2>
-            <nav class="categorias">
-                <ul>
-                    <li><a href="#catalogo">Laptops</a></li>
-                    <li><a href="#catalogo">Celulares</a></li>
-                    <li><a href="#catalogo">Tablets</a></li>
-                    <li><a href="#catalogo">Accesorios</a></li>
-                </ul>
-            </nav>             
             <div class="productos">
                 <article class="destacado">
                     <figure>
@@ -54,7 +122,7 @@
                     <p><strong>$1,999.99</strong></p>
                     <button type="button">Agregar al carrito</button>
                 </article>
-                <article class="ancha">
+                <article>
                     <figure>
                         <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS1eCKck5yyiDW08v0Uuzc-LssM4iJC3ttkPCbGSW-JpuJpH_OtZoalXeRYyit1DX0tDM9PaF0aedQP_PSy8K1kUc2Un-b1pr0I8YTPaokJFTWsc5nwQYzluZwKWMaS0CKHa9SD7XUSLw&usqp=CAc" alt="Macbook Pro 14 pulgadas gris espacial" width="200"/>
                         <figcaption>Apple</figcaption>
@@ -81,16 +149,7 @@
                     <p><strong>$1,009.99</strong></p>
                     <button type="button">Agregar al carrito</button>
                 </article>
-                <article>
-                    <figure>
-                        <img src="https://www.peru-smart.com/wp-content/uploads/2024/08/LAPT207PLATA-512GBSSD.jpg" alt="Laptop Dell Pro 14 PC14250 Intel Core i7" width="200"/>
-                    <figcaption>DELL</figcaption>
-                    </figure>
-                    <h3 class="titulo">Dell Pro 14" PC14250</h3>
-                    <p><strong>$1,550.00</strong></p>
-                    <button type="button">Agregar al carrito</button>
-                </article>
-            </div>
+            <div>
         </section>
         <section id="compra">
             <h2>Finalizar compra</h2>
@@ -109,40 +168,36 @@
                         <label for="direccion">Direccion</label><br/>
                         <input type="text" id="direccion" name="direccion" required minlength="5" autocomplete="address-line1">
                     </p>
-                    <div class="fila">
-                        <p>
-                            <label for="ciudad">Ciudad</label><br/>
-                            <input type="text" id="ciudad" name="ciudad" list="ciudades" required autocomplete="address-level2">
-                            <datalist id="ciudades">
-                                <option value="Lima"></option>
-                                <option value="Bogota"></option>
-                                <option value="Ciudade de Mexico"></option>
-                                <option value="Buenos Aires"></option>
-                                <option value="Madrid"></option>
-                            </datalist>
-                        </p>
-                        <p>
-                            <label for="pais">Pais</label><br/>
-                            <select name="pais" id="pais" required>
-                                <option value="">-Elige un pais-</option>
-                                <option value="pe">Peru</option>
-                                <option value="co">Colombia</option>
-                                <option value="mx">Mexico</option>
-                                <option value="ar">Argentina</option>
-                                <option value="es">Espana</option>
-                            </select>
-                        </p>
-                    </div>
-                    <div class="fila">
-                        <p>
-                            <label for="telefono">Telefono</label><br/>
-                            <input type="tel" id="telefono" pattern="[0-9]{7,}" title="Solo numeros, al menos 7 digitos" autocomplete="tel">
-                        </p>
-                        <p>
-                            <label for="fecha">Fecha de entrega deseada</label><br/>
-                            <input type="date" id="fecha" name="fecha">
-                        </p>
-                    </div>
+                    <p>
+                        <label for="ciudad">Ciudad</label><br/>
+                        <input type="text" id="ciudad" name="ciudad" list="ciudades" required autocomplete="address-level2">    
+                        <datalist id="ciudades">
+                            <option value="Lima"></option>
+                            <option value="Bogota"></option>
+                            <option value="Ciudade de Mexico"></option>
+                            <option value="Buenos Aires"></option>
+                            <option value="Madrid"></option>
+                        </datalist>
+                    </p>
+                    <p>
+                        <label for="pais">Pais</label><br/>
+                        <select name="pais" id="pais" required>
+                            <option value="">-Elige un pais-</option>
+                            <option value="pe">Peru</option>
+                            <option value="co">Colombia</option>
+                            <option value="mx">Mexico</option>
+                            <option value="ar">Argentina</option>
+                            <option value="es">Espana</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="telefono">Telefono</label><br/>
+                        <input type="tel" id="telefono" pattern="[0-9]{7,}" title="Solo numeros, al menos 7 digitos" autocomplete="tel">
+                    </p>
+                    <p>
+                        <label for="fecha">Fecha de entrega deseada</label><br/>
+                        <input type="date" id="fecha" name="fecha">
+                    </p>
                     <p>
                         <label for="cantidad">Cantidad de unidades</label>
                         <input type="number" id="cantidad" name="cantidad" min="1" max="10" step="1" value="1" required>
@@ -215,28 +270,9 @@
     </aside>
     <!-- Footer -->
     <footer>
-        <div class="pie-columna">
-            <h3>TechCart</h3>
-            <p>Tecnología al mejor precio, con envío a todo el Perú.</p>
-            <p>&copy; 2026 TechCart - Proyecto educativo</p>
-        </div>
-
-        <div class="pie-columna">
-            <h3>Enlaces</h3>
-            <ul>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#compra">Comprar</a></li>
-                <li><a href="https://dummyjson.com" target="_blank" rel="noopener">DummyJson</a></li>
-            </ul>
-        </div>
-
-        <div class="pie-columna">
-            <h3>Contacto</h3>
-            <address>
-                <a href="mailto:edwardhc1997@gmail.com">edwardhc1997@gmail.com</a><br>
-                Lima, Perú
-            </address>
-        </div>
+        <p>&copy; 2026 TechCart - Proyecto educativo</p>
+        <p>Datos e imagenes de <a href="https://dummyjson.com" target="_blank" rel="noopener">DummyJson</a></p>
+        <address>Contacto: <a href="mailto:edwardhc1997@gmail.com">edwardhc1997@gmail.com</a></address>
     </footer>
 </body>
 </html>
