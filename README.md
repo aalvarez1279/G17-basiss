@@ -25,3 +25,10 @@ flex-direction: row-reverse;
   display: grid;
 grid-template: 1fr 50px / 20% 1fr;
 }	
+
+## Tarea - Clase 06
+/*
+Intermedia 2:
+La respuesta es SI, por el beneficio, es decir un cambio, en un solo lugar. Si posteriormente se quisiera hacer un cambio en la tabla o quitar los bordes verticales, el cambio sería en una línea en .celda. Sin el componente, se tendría que editar 12 sitios.
+Y No porque un componente con @apply es una capa de indirección más: quien lee el HTML ya no ve los estilos y tiene que ir a buscarlos.
+*/

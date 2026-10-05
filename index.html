@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-
-<html lang="es">
+<html lang="es" data-theme="light" class="dark:scheme-dark">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechCart — Tienda de electrónica</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechCart — Tienda de electrónica</title>
 
-    <link rel="stylesheet" href="./css/styles.css" />
+ <!-- <link rel="stylesheet" href="./css/styles.css" /> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script defer src="./js/main.js"></script>
-    <style type="text/tailwindcss">
+  <!-- CDN de Tailwind v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="./js/main.js"></script>
 
-        @theme {
-
+  <style type="text/tailwindcss">
+    @theme {
       --color-marca:        #0066cc;
       --color-sobre-marca:  #fff;
       --color-exito:        hsl(146 85% 26%);
@@ -26,6 +25,8 @@
       --color-texto:        #1d1d1f;
       --color-texto-suave:  #6e6e73;
       --color-borde:        #d2d2d7;
+      --color-oferta:       #c2410c;
+      
 
       --radius-tarjeta: 12px;
 
@@ -40,10 +41,20 @@
 
       --container-pagina: 1100px;
       --container-ancha:  1280px;
+
+      /* Las animaciones - @keyframes */
+      @keyframes aparecer {
+        from { opacity: 0; translate: 0 0.75rem; }
+      }
+      @keyframes latido {
+        to { scale: 1.06; }
+      }
     }
 
-    @media (prefers-color-scheme: dark) {
+   @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
       :root {
+        @variant dark {
         --color-marca:        #3d9bff;
         --color-sobre-marca:  #0b1220;
         --color-exito:        #30d158;
@@ -55,11 +66,12 @@
         --color-texto:        #f5f5f7;
         --color-texto-suave:  #a1a1a6;
         --color-borde:        #3a3a3c;
+        --color-oferta:       #ff9f0a;
       }
     }
-
+  
+    /* Los cuatro componentes */
     @layer components {
-
       .tarjeta {
         @apply bg-tarjeta border border-borde rounded-tarjeta p-4;
       }
@@ -87,203 +99,262 @@
                after:content-[''] after:block after:w-12 after:h-[3px]
                after:bg-marca after:mt-1;
       }
+      .celda {
+         @apply border border-borde px-3 py-2;
+      }
     }
   </style>
 </head>
 
-<body>
-    <!-- ENCABEZADO -->
-    <header>
-        <h1>TechCart</h1>
-        <nav aria-label="Principal">
-            <ul>
-                <li>
-                    <a href="#catalogo">
-                        Catalogo
-                    </a>
-                </li>
-                <li>
-                    <a href="#compra">
-                        Comprar
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <!-- CONTENIDO PRINCIPAL -->
-    <main>
-        <section id="catalogo">
-            <h2>Catalogo de productos</h2>
-            <div class="productos">
-                <article class="destacado">
-                    <figure>
-                        <img src="https://www.appleperu.pe/wp-content/uploads/macbook-pro-retina.jpg"
-                            alt="Macbook Pro 14 pulgadas gris espacial" width="200" />
-                        <figcaption>Apple</figcaption>
-                    </figure>
-                    <h3>Macbook Pro 14"</h3>
-                    <p><strong>$1,999.99</strong></p>
-                    <button type="button">Agregar al carrito</button>
-                </article>
-                <article>
-                    <figure>
-                        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS1eCKck5yyiDW08v0Uuzc-LssM4iJC3ttkPCbGSW-JpuJpH_OtZoalXeRYyit1DX0tDM9PaF0aedQP_PSy8K1kUc2Un-b1pr0I8YTPaokJFTWsc5nwQYzluZwKWMaS0CKHa9SD7XUSLw&usqp=CAc"
-                            alt="Macbook Pro 14 pulgadas gris espacial" width="200" />
-                        <figcaption>Apple</figcaption>
-                    </figure>
-                    <h3>Macbook Pro 14"</h3>
-                    <p><strong>$2,000.99</strong></p>
-                    <button type="button">Agregar al carrito</button>
-                </article>
-                <article>
-                    <figure>
-                        <img src="https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111902_mbp14-silver2.png"
-                            alt="Macbook Pro 14 pulgadas gris espacial" width="200" />
-                        <figcaption>Apple</figcaption>
-                    </figure>
-                    <h3>Macbook Pro 14"</h3>
-                    <p><strong>$4,599.99</strong></p>
-                    <button type="button">Agregar al carrito</button>
-                </article>
-                <article>
-                    <figure>
-                        <img src="https://www.appleperu.pe/wp-content/uploads/1990-1.jpg"
-                            alt="Macbook Pro 14 pulgadas gris espacial" width="200" />
-                        <figcaption>Apple</figcaption>
-                    </figure>
-                    <h3>Macbook Pro 14"</h3>
-                    <p><strong>$1,009.99</strong></p>
-                    <button type="button">Agregar al carrito</button>
-                </article>
-                <div>
-        </section>
-        <section id="compra">
-            <h2>Finalizar compra</h2>
-            <form action="">
-                <fieldset class="envio">
-                    <legend>Datos de envio</legend>
-                    <p>
-                        <label for="nombre">Nombre completo</label><br />
-                        <input type="text" id="nombre" name="nombre" required minlength="3" autocomplete="name"
-                            placeholder="Nombre del usuario">
-                    </p>
-                    <p>
-                        <label for="email">Correo electronico</label><br />
-                        <input type="email" id="email" name="email" required autocomplete="email">
-                    </p>
-                    <p>
-                        <label for="direccion">Direccion</label><br />
-                        <input type="text" id="direccion" name="direccion" required minlength="5"
-                            autocomplete="address-line1">
-                    </p>
-                    <p>
-                        <label for="ciudad">Ciudad</label><br />
-                        <input type="text" id="ciudad" name="ciudad" list="ciudades" required
-                            autocomplete="address-level2">
-                        <datalist id="ciudades">
-                            <option value="Lima"></option>
-                            <option value="Bogota"></option>
-                            <option value="Ciudade de Mexico"></option>
-                            <option value="Buenos Aires"></option>
-                            <option value="Madrid"></option>
-                        </datalist>
-                    </p>
-                    <p>
-                        <label for="pais">Pais</label><br />
-                        <select name="pais" id="pais" required>
-                            <option value="">-Elige un pais-</option>
-                            <option value="pe">Peru</option>
-                            <option value="co">Colombia</option>
-                            <option value="mx">Mexico</option>
-                            <option value="ar">Argentina</option>
-                            <option value="es">Espana</option>
-                        </select>
-                    </p>
-                    <p>
-                        <label for="telefono">Telefono</label><br />
-                        <input type="tel" id="telefono" pattern="[0-9]{7,}" title="Solo numeros, al menos 7 digitos"
-                            autocomplete="tel">
-                    </p>
-                    <p>
-                        <label for="fecha">Fecha de entrega deseada</label><br />
-                        <input type="date" id="fecha" name="fecha">
-                    </p>
-                    <p>
-                        <label for="cantidad">Cantidad de unidades</label>
-                        <input type="number" id="cantidad" name="cantidad" min="1" max="10" step="1" value="1" required>
-                    </p>
-                    <p class="campo-ancho">
-                        <label for="notas">Notas para el repartidor (opcinal)</label>
-                        <textarea name="notas" id="notas" rows="5" maxlength="200"></textarea>
-                    </p>
-                </fieldset>
-                <fieldset>
-                    <legend>Metodo de pago</legend>
-                    <p>
-                        <input type="radio" id="pago-tarjeta" name="pago" value="tarjeta" required>
-                        <label for="pago-tarjeta">Tarjeta</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="pago-paypal" name="pago" value="paypal">
-                        <label for="pago-paypal">PayPal</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="pago-contra" name="pago" value="contraentrega">
-                        <label for="pago-contra">Contra entrega</label>
-                    </p>
-                </fieldset>
-                <p>
-                    <input type="checkbox" id="terminos" name="terminos" required>
-                    <label for="terminos">Acepto terminos y condiciones</label>
-                </p>
-                <button type="submit">Confirmar pedido</button>
-            </form>
-        </section>
-    </main>
-    <aside>
-        <h2>Informacion de la compra</h2>
-        <h3>Como comprar en tres pasos</h3>
-        <ol>
-            <li>Elige un producto del catalogo.</li>
-            <li>Agregalo al carrito</li>
-            <li>Confirma tu pedido con tus datos de envio</li>
-        </ol>
+<!-- Utilidades por zona -->
 
-        <h3>Costos de envio</h3>
-        <table>
-            <caption>Tarifas por zona</caption>
-            <thead>
-                <tr>
-                    <th>Zona</th>
-                    <th>Tiempo</th>
-                    <th>Costo</th>
-                </tr>
+<body class="bg-fondo text-texto font-sans antialiased leading-normal">
+
+  <!-- ENCABEZADO -->
+  <header class="sticky top-0 z-10 border-b border-borde bg-tarjeta/90 backdrop-blur">
+    <div class="mx-auto flex max-w-pagina monitor:max-w-ancha flex-wrap items-center justify-between gap-3 px-4 py-3">
+      <h1 class="text-2xl font-bold tracking-tight text-marca">TechCart</h1>
+      <nav aria-label="Principal">
+        <ul class="flex gap-5 font-medium">
+          <li><a href="#catalogo" class="hover:text-marca focus-visible:text-marca">Catalogo</a></li>
+          <li><a href="#compra" class="hover:text-marca focus-visible:text-marca">Comprar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="mx-auto grid max-w-pagina monitor:max-w-ancha gap-12 px-4 py-8">
+
+    <!-- BENEFICIOS: auto-fit decide cuántas columnas caben (sin breakpoints) -->
+    <section id="beneficios" aria-labelledby="titulo-beneficios">
+      <h2 id="titulo-beneficios" class="titulo-seccion mb-4">Por que comprar en TechCart</h2>
+      <ul class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-4">
+        <li class="tarjeta animate-aparecer motion-reduce:animate-none">
+          <p class="text-2xl" aria-hidden="true">🚚</p>
+          <h3 class="mt-2 font-semibold">Envio gratis en Lima</h3>
+          <p class="text-sm text-texto-suave">Recibe tu pedido en 24 horas sin costo adicional.</p>
+        </li>
+        <li class="tarjeta animate-aparecer motion-reduce:animate-none [animation-delay:100ms]">
+          <p class="text-2xl" aria-hidden="true">🛡️</p>
+          <h3 class="mt-2 font-semibold">Garantia de 12 meses</h3>
+          <p class="text-sm text-texto-suave">Todos los equipos incluyen garantia oficial.</p>
+        </li>
+        <li class="tarjeta animate-aparecer motion-reduce:animate-none [animation-delay:200ms]">
+          <p class="text-2xl" aria-hidden="true">🔒</p>
+          <h3 class="mt-2 font-semibold">Pago seguro</h3>
+          <p class="text-sm text-texto-suave">Paga con tarjeta, PayPal o contra entrega.</p>
+        </li>
+        <!-- CUARTO BENEFICIO (nuevo) -->
+        <li class="tarjeta animate-aparecer motion-reduce:animate-none [animation-delay:300ms] bg-resalte border-marca">
+          <p class="text-2xl" aria-hidden="true">↩️</p>
+          <h3 class="mt-2 font-semibold">Devoluciones en 30 dias</h3>
+          <p class="text-sm text-texto-suave">Si no te convence, lo devuelves sin preguntas.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section id="catalogo" class="scroll-mt-20">
+      <h2 class="titulo-seccion mb-4">Catalogo de productos</h2>
+      <div class="productos grid grid-cols-[repeat(auto-fit,minmax(min(100%,14rem),1fr))] gap-4">
+        <article class="destacado tarjeta relative flex flex-col gap-2 ring-2 ring-marca">
+          <span
+            class="absolute -top-3 right-3 rounded-full bg-marca px-3 py-0.5 text-xs font-semibold text-sobre-marca motion-safe:animate-latido">
+            Destacado
+          </span>
+          <figure class="text-center">
+            <img src="https://www.appleperu.pe/wp-content/uploads/macbook-pro-retina.jpg"
+              alt="Macbook Pro 14 pulgadas gris espacial" width="200" class="mx-auto h-40 object-contain dark:brightness-90"/>
+            <figcaption class="text-sm text-texto-suave">Apple</figcaption>
+          </figure>
+          <h3 class="font-semibold">Macbook Pro 14"</h3>
+          <p class="text-lg text-exito"><strong>$1,999.99</strong></p>
+          <button type="button" class="boton mt-auto">Agregar al carrito</button>
+        </article>
+        <article class="tarjeta flex flex-col gap-2">
+          <figure class="text-center">
+            <img
+              src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS1eCKck5yyiDW08v0Uuzc-LssM4iJC3ttkPCbGSW-JpuJpH_OtZoalXeRYyit1DX0tDM9PaF0aedQP_PSy8K1kUc2Un-b1pr0I8YTPaokJFTWsc5nwQYzluZwKWMaS0CKHa9SD7XUSLw&usqp=CAc"
+              alt="Macbook Pro 14 pulgadas, vista frontal" width="200" class="mx-auto h-40 object-contain dark:brightness-90"/>
+            <figcaption class="text-sm text-texto-suave">Apple</figcaption>
+          </figure>
+          <h3 class="font-semibold">Macbook Pro 14"</h3>
+          <p class="text-lg text-exito"><strong>$2,000.99</strong></p>
+          <button type="button" class="boton mt-auto">Agregar al carrito</button>
+        </article>
+        <article class="tarjeta flex flex-col gap-2">
+          <figure class="text-center">
+            <img src="https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111902_mbp14-silver2.png"
+              alt="Macbook Pro 14 pulgadas plateada" width="200" class="mx-auto h-40 object-contain dark:brightness-90"/>
+            <figcaption class="text-sm text-texto-suave">Apple</figcaption>
+          </figure>
+          <h3 class="font-semibold">Macbook Pro 14"</h3>
+          <p class="text-lg text-exito"><strong>$4,599.99</strong></p>
+          <button type="button" class="boton mt-auto">Agregar al carrito</button>
+        </article>
+        <article class="tarjeta relative flex flex-col gap-2
+                        before:content-['Oferta'] before:absolute before:-top-3 before:left-3
+                        before:rounded-full before:bg-oferta before:px-3 before:py-0.5
+                        before:text-xs before:font-semibold before:text-sobre-marca">
+          <figure class="text-center">
+            <img src="https://www.appleperu.pe/wp-content/uploads/1990-1.jpg"
+              alt="Macbook Pro 14 pulgadas, vista lateral" width="200" class="mx-auto h-40 object-contain dark:brightness-90"/>
+            <figcaption class="text-sm text-texto-suave">Apple</figcaption>
+          </figure>
+          <h3 class="font-semibold">Macbook Pro 14"</h3>
+          <p class="text-lg text-exito"><strong>$1,009.99</strong></p>
+          <button type="button" class="boton mt-auto">Agregar al carrito</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section id="compra" class="scroll-mt-20">
+      <h2 class="titulo-seccion mb-4">Finalizar compra</h2>
+      <form action="" class="grid gap-6">
+        <fieldset class="envio tarjeta grid gap-4 sm:grid-cols-2">
+          <legend class="px-2 font-semibold">Datos de envio</legend>
+          <p class="flex flex-wrap gap-1">
+            <label for="nombre">Nombre completo</label>
+            <input class="campo" type="text" id="nombre" name="nombre" required minlength="3" autocomplete="name"
+              placeholder="Nombre del usuario">
+          </p>
+          <p class="flex flex-wrap gap-1">
+            <label for="email">Correo electronico</label>
+            <input class="campo" type="email" id="email" name="email" required autocomplete="email"
+              placeholder="tu@correo.com">
+          </p>
+          <p class="flex flex-wrap gap-1">
+            <label for="direccion">Direccion</label>
+            <input class="campo" type="text" id="direccion" name="direccion" required minlength="5"
+              autocomplete="address-line1">
+          </p>
+          <p class="flex flex-wrap gap-1">
+            <label for="ciudad">Ciudad</label>
+            <input class="campo" type="text" id="ciudad" name="ciudad" list="ciudades" required
+              autocomplete="address-level2">
+            <datalist id="ciudades">
+              <option value="Lima"></option>
+              <option value="Bogota"></option>
+              <option value="Ciudad de Mexico"></option>
+              <option value="Buenos Aires"></option>
+              <option value="Madrid"></option>
+            </datalist>
+          </p>
+          <p class="flex flex-wrap gap-1">
+            <label for="pais">Pais</label>
+            <select class="campo" name="pais" id="pais" required>
+              <option value="">-Elige un pais-</option>
+              <option value="pe">Peru</option>
+              <option value="co">Colombia</option>
+              <option value="mx">Mexico</option>
+              <option value="ar">Argentina</option>
+              <option value="es">Espana</option>
+            </select>
+          </p>
+          <p class="flex flex-wrap gap-1">
+            <label for="telefono">Telefono</label>
+            <input class="campo" type="tel" id="telefono" name="telefono" pattern="[0-9]{7,}"
+              title="Solo numeros, al menos 7 digitos" autocomplete="tel">
+          </p>
+          <p class="flex flex-wrap gap-1">
+            <label for="fecha">Fecha de entrega deseada</label>
+            <input class="campo" type="date" id="fecha" name="fecha">
+          </p>
+          <p class="flex flex-wrap gap-1">
+            <label for="cantidad">Cantidad de unidades</label>
+            <input class="campo" type="number" id="cantidad" name="cantidad" min="1" max="10" step="1" value="1"
+              required>
+          </p>
+          <p class="campo-ancho flex flex-wrap gap-1 sm:col-span-2">
+            <label for="notas">Notas para el repartidor (opcional)</label>
+            <textarea class="campo resize-y" name="notas" id="notas" rows="5" maxlength="200"></textarea>
+          </p>
+        </fieldset>
+
+        <fieldset class="tarjeta flex flex-wrap gap-x-6 gap-y-2">
+          <legend class="px-2 font-semibold">Metodo de pago</legend>
+          <p class="flex items-center gap-2">
+            <input class="size-4 accent-marca" type="radio" id="pago-tarjeta" name="pago" value="tarjeta" required>
+            <label for="pago-tarjeta">Tarjeta</label>
+          </p>
+          <p class="flex items-center gap-2">
+            <input class="size-4 accent-marca" type="radio" id="pago-paypal" name="pago" value="paypal">
+            <label for="pago-paypal">PayPal</label>
+          </p>
+          <p class="flex items-center gap-2">
+            <input class="size-4 accent-marca" type="radio" id="pago-contra" name="pago" value="contraentrega">
+            <label for="pago-contra">Contra entrega</label>
+          </p>
+        </fieldset>
+
+        <p class="flex items-center gap-2">
+          <input class="size-4 accent-marca" type="checkbox" id="terminos" name="terminos" required>
+          <label for="terminos">Acepto terminos y condiciones</label>
+        </p>
+        <button type="submit" class="boton justify-self-start font-semibold">Confirmar pedido</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- ASIDE -->
+  <aside class="mx-auto mb-10 max-w-pagina monitor:max-w-ancha px-4">
+    <div class="tarjeta grid gap-6 md:grid-cols-2">
+      <div>
+        <h2 class="titulo-seccion mb-3">Informacion de la compra</h2>
+        <h3 class="mb-2 font-semibold">Como comprar en tres pasos</h3>
+        <ol class="list-decimal space-y-1 pl-5 text-texto-suave">
+          <li>Elige un producto del catalogo.</li>
+          <li>Agregalo al carrito.</li>
+          <li>Confirma tu pedido con tus datos de envio.</li>
+        </ol>
+      </div>
+      <div>
+        <h3 class="mb-2 font-semibold">Costos de envio</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse text-left text-sm">
+            <caption class="mb-2 text-left text-texto-suave">Tarifas por zona</caption>
+            <thead class="bg-fondo-suave">
+              <tr>
+                <th class="celda bg-fondo-suave">Zona</th>
+                <th class="celda bg-fondo-suave">Tiempo</th>
+                <th class="celda bg-fondo-suave">Costo</th>
+              </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Lima</td>
-                    <td>24 horas</td>
-                    <td>Gratis</td>
-                </tr>
-                <tr>
-                    <td>Resto del Peru</td>
-                    <td>3 a 5 dias</td>
-                    <td>$9.90</td>
-                </tr>
-                <tr>
-                    <td>Internacional</td>
-                    <td>7 a 15 dias</td>
-                    <td>$29.90</td>
-                </tr>
+            <tbody class="[&_td]:border-t [&_td]:border-borde [&_td]:px-3 [&_td]:py-2">
+              <tr>
+                <td class="celda">Lima</td>
+                <td class="celda">24 horas</td>
+                <td class="celda font-semibold text-exito">Gratis</td>
+              </tr>
+              <tr>
+                <td class="celda">Resto del Peru</td>
+                <td class="celda">3 a 5 dias</td>
+                <td class="celda">$9.90</td>
+              </tr>
+              <tr>
+                <td class="celda">Internacional</td>
+                <td class="celda">7 a 15 dias</td>
+                <td class="celda">$29.90</td>
+              </tr>
             </tbody>
-        </table>
-    </aside>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 TechCart - Proyecto educativo</p>
-        <p>Datos e imagenes de <a href="https://dummyjson.com" target="_blank" rel="noopener">DummyJson</a></p>
-        <address>Contacto: <a href="mailto:edwardhc1997@gmail.com">edwardhc1997@gmail.com</a></address>
-    </footer>
+          </table>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-borde bg-tarjeta">
+    <div class="mx-auto grid max-w-pagina monitor:max-w-ancha gap-1 px-4 py-6 text-sm text-texto-suave">
+      <p>&copy; 2026 TechCart - Proyecto educativo</p>
+      <p>Datos e imagenes de <a href="https://dummyjson.com" target="_blank" rel="noopener"
+          class="text-marca underline-offset-2 hover:underline">DummyJson</a></p>
+      <address class="not-italic">Contacto: <a href="mailto:edwardhc1997@gmail.com"
+          class="text-marca underline-offset-2 hover:underline">edwardhc1997@gmail.com</a></address>
+    </div>
+  </footer>
 </body>
 
 </html>
